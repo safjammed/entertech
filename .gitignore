@@ -1,0 +1,6 @@
+.env
+/vendor
+.idea
+.DS_STORE
+!.idea/runConfigurations
+cache
