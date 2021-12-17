@@ -25,6 +25,7 @@ Router::group(['namespace' => '\App\Controllers', 'middleware' => MessageClearer
         Router::get("/", "AdminPageController@products_page");
         Router::group(['prefix' => '/orders'], function(){
             Router::get("/", "OrderController@orders_page");
+            Router::get("/{id?}/{status?}", "OrderController@change_status");
         });
         Router::group(['prefix' => '/products'], function(){
             Router::get("/", "AdminPageController@products_page");

@@ -8,6 +8,7 @@
 {% endblock %}
 {% block content %}
     <h1>ORDERS</h1>
+    {% include "parts/alert.twig" %}
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -16,6 +17,7 @@
             <th> User </th>
             <th> Created at </th>
             <th>Charged Amount</th>
+            <th>Status</th>
             <th>actions</th>
         </tr>
         </thead>
@@ -27,7 +29,22 @@
                 <td>{{ order.user_name }}</td>
                 <td>{{ order.created_at }}</td>
                 <td>${{ order.charged }}</td>
-                <td></td>
+                <td>{{ order.status }}</td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton{{ order.id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                            Status
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ order.id }}">
+                            {% for status in statuses %}
+                                {% if status != order.status %}
+                                    <li><a class="dropdown-item" href="/admin/orders/{{ order.id }}/{{ status }}">Make {{ status }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

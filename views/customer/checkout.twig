@@ -23,6 +23,10 @@
         <div class="alert alert-success" role="alert">
             Congrats! You will get a location discount!
         </div>
+    {% else %}
+            <div class="alert alert-warning" role="alert">
+                you are not eligible for location discount on this product
+            </div>
     {% endif %}
     <form action="/buy/{{ product.id }}" method="post">
         <input type="hidden" name="product_id" value="{{ product.id }}" />
