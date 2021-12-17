@@ -8,8 +8,36 @@
 </style>
 {% endblock %}
 {% block content %}
-<h1>Index</h1>
-<p class="important">
-    Welcome to my awesome homepage.
-</p>
+    <h1>Homepage</h1>
+    {% if session.logged_in %}
+        <p>{{ session.user.name }}, is logged in</p>
+
+        {% if session.user.role == 'admin'%}
+            <a href="/admin"> Access ADMIN</a> <br>
+        {% endif %}
+
+        <a href="/auth/logout">Logout</a>
+    {% endif %}
+
+
+    {% include 'parts/alert.twig' %}
+
+    <br>
+    <div class="row">
+        <div class="col-12 mb-5">
+            We have {{ products|length }} product(s)
+        </div>
+        {% for product in products %}
+        <div class="col-md-4">
+            <div class="card" >
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">${{ product.price }}</h6>
+                    <p class="card-text">{{ product.details }}</p>
+                    <a href="/buy/{{ product.id }}" class="card-link">buy</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 {% endblock %}

@@ -1,0 +1,33 @@
+{% extends "layouts/main.twig" %}
+
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+
+    </style>
+{% endblock %}
+{% block content %}
+    {% if session.logged_in %}
+        <p>{{ session.user.name }}, is logged in</p>
+        <a href="/auth/logout">Logout</a>
+    {% endif %}
+
+
+
+    <h1>Buy {{ product.name }}</h1>
+    <h6 class="mb-2 text-muted">${{ product.price }}</h6>
+    <p>{{ product.details }}</p>
+    <br>
+    {% if session.user.location_id == product.location_id %}
+        <div class="alert alert-success" role="alert">
+            Congrats! You will get a location discount!
+        </div>
+    {% endif %}
+    <form action="/buy/{{ product.id }}" method="post">
+        <input type="hidden" name="product_id" value="{{ product.id }}" />
+        <button type="submit" class="btn btn-primary">Confirm Purchase</button>
+    </form>
+
+
+{% endblock %}

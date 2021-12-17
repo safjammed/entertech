@@ -1,0 +1,36 @@
+{% extends "layouts/admin.twig" %}
+
+{% block title %}Orders{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+    </style>
+{% endblock %}
+{% block content %}
+    <h1>ORDERS</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th> ID </th>
+            <th> Product </th>
+            <th> User </th>
+            <th> Created at </th>
+            <th>Charged Amount</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.product_name }}</td>
+                <td>{{ order.user_name }}</td>
+                <td>{{ order.created_at }}</td>
+                <td>${{ order.charged }}</td>
+                <td></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </w-full>
+{% endblock %}

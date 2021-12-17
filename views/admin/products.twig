@@ -1,0 +1,36 @@
+{% extends "layouts/admin.twig" %}
+
+{% block title %}Products{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+    </style>
+{% endblock %}
+{% block content %}
+    <h1>Products</h1>
+    <a href="/admin/products/add" class="btn mb-5 btn-success">Add product</a>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> name </th>
+                <th> Created at </th>
+                <th> Location </th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.created_at }}</td>
+                <td>{{ product.location_name }}</td>
+                <td></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </w-full>
+{% endblock %}

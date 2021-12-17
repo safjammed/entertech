@@ -64,4 +64,12 @@ class Model
         ]);
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
+    public static function all(){
+        $model = get_called_class();
+        $model = new $model();
+        $sql = "SELECT * FROM ".$model->getTable();
+        $statement = $model->db->prepare($sql);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
